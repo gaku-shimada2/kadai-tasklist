@@ -1,5 +1,20 @@
 <% if logged_in? %>
-  <%= link_to 'トップに戻る', user_path(current_user) %>
+<div class="row">
+  <aside class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><%= @user.name %></h3>
+      </div>
+      <div class="card-body">
+        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+      </div>
+    </div>
+  </aside>
+  <div class="col-sm-8">
+      <%= render 'tasks/tasks', tasks: @tasks %>
+      <p><%= link_to 'タスクの新規作成', new_task_path %></p>
+  </div>
+</div>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
